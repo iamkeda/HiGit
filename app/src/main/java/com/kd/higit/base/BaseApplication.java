@@ -3,6 +3,7 @@ package com.kd.higit.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.kd.higit.api.GitHub;
 import com.kd.higit.api.MyX509TrustManager;
 
@@ -17,7 +18,7 @@ public class BaseApplication extends Application{
         super.onCreate();
         mBaseApplication = this;
         MyX509TrustManager.allowAllSSL();
-        //Glide来加载图片
+        Fresco.initialize(mBaseApplication);
         GitHub.init(mBaseApplication);
 
     }
