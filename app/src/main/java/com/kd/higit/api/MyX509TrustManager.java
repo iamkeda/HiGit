@@ -1,5 +1,7 @@
 package com.kd.higit.api;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
@@ -43,6 +45,13 @@ public class MyX509TrustManager implements X509TrustManager {
         SSLContext context = null;
         if (trustManagers == null) {
             trustManagers = new TrustManager[] {new MyX509TrustManager()};
+        }
+
+        try {
+            context = SSLContext.getInstance("TLS");
+            context.init(null, trustManagers, new SecureRandom());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
     }
