@@ -348,4 +348,9 @@ public class User extends TModel implements Parcelable {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    @Override
+    public String toString() {
+        return "login： " + login + "id: " + id;
+    }
 }
