@@ -8,8 +8,8 @@ import android.content.SharedPreferences;
  */
 public class GitHub implements ApiClient {
     public static String NAME = "Github";
-    public static String CLIENT_ID = "";
-    public static String CLIENT_SECRET = "";
+    public static String CLIENT_ID = "cca6deb635f2957b1a16";
+    public static String CLIENT_SECRET = "9622b9add856d08dbe0c88e140603f9fe500665a";
     public static String REDIRECT_URI = "https://github.com/iamkeda/HiGit";
     public static String API_AUTHORIZE_URL = "https://github.com/login/oauth/authorize/";
     public static String API_OAUTH_URL = "https://github.com/";

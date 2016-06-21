@@ -13,12 +13,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 
 import com.kd.gitnb.R;
 import com.kd.higit.bean.CurrentUser;
 import com.kd.higit.bean.User;
+import com.kd.higit.utils.KLog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,6 +65,7 @@ public class FirstActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FOR_AUTHORIZE && resultCode == RESULT_OK) {
+            KLog.d("认证成功");
             jumpToManiActivity();
         }
     }
@@ -75,7 +78,7 @@ public class FirstActivity extends Activity {
 
     private void initView() {
         if (mUser != null) {
-            mButton.setText("welcome");
+            mButton.setText("Welcome");
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +87,7 @@ public class FirstActivity extends Activity {
             });
         }
         else {
-            mButton.setText("login");
+            mButton.setText("Login");
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
