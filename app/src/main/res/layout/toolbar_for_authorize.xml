@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+        </View>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="50dp"
+            android:layout_width="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/title_auth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:paddingLeft="5dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/switch_button"
+                    android:visibility="gone"
+                    style="@style/SwitchButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:kswBackDrawable="@drawable/miui_back"
+                    app:kswBackMeasureRatio="2.2"
+                    app:kswThumbDrawable="@drawable/miui_thumb"
+                    app:kswThumbHeight="16dp"
+                    app:kswThumbWidth="16dp"/>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
+</android.support.design.widget.AppBarLayout>
+
