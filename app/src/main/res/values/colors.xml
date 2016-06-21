@@ -33,4 +33,7 @@
     <color name="dark_red">#ff990000</color>
     <color name="card_background">#fffafafa</color>
     <color name="vodafone_red">#ffe60000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>
