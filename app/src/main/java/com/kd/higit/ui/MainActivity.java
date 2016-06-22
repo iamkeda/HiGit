@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewPager.setCurrentItem(1);
         ////关闭预加载，默认一次只加载一个Fragment
         mViewPager.setOffscreenPageLimit(2);
-
         mTabLayout.setupWithViewPager(mViewPager);
         //一下两行必须同时设置，标签评分tab
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
