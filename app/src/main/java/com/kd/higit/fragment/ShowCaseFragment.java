@@ -2,7 +2,6 @@ package com.kd.higit.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import com.kd.higit.ui.ReposListActivity;
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 /**
  * Created by KD on 2016/6/21.
@@ -54,7 +53,7 @@ public class ShowCaseFragment extends BaseFragment implements RetrofitNetwork.Ne
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLinearLayoutManager);
         ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(adapter);
-        SlideInRightAnimationAdapter slideAdapter = new SlideInRightAnimationAdapter(scaleAdapter);
+        SlideInBottomAnimationAdapter slideAdapter = new SlideInBottomAnimationAdapter(scaleAdapter);
         slideAdapter.setDuration(300);
         slideAdapter.setInterpolator(new OvershootInterpolator());
         recyclerView.setAdapter(slideAdapter);

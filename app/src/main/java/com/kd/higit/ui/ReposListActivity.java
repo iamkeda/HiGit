@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import com.kd.gitnb.R;
@@ -15,12 +16,14 @@ import com.kd.higit.api.TrendingClient;
 import com.kd.higit.bean.Repository;
 import com.kd.higit.bean.ShowCase;
 import com.kd.higit.bean.ShowCaseSearch;
-import com.kd.higit.bean.User;
 import com.kd.higit.fragment.ShowCaseFragment;
 import com.kd.higit.utils.MessageUtils;
 import com.kd.higit.utils.Utils;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 /**
  * Created by KD on 2016/6/22.
@@ -34,7 +37,7 @@ public class ReposListActivity extends BaseSwipeActivity implements RetrofitNetw
 
     @Override
     protected void setTitle(TextView view) {
-        view.setText("");
+        view.setText(showCase.name);
     }
 
     @Override
@@ -55,7 +58,11 @@ public class ReposListActivity extends BaseSwipeActivity implements RetrofitNetw
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(adapter);
+        SlideInBottomAnimationAdapter slideAdapter = new SlideInBottomAnimationAdapter(scaleAdapter);
+        slideAdapter.setDuration(300);
+        slideAdapter.setInterpolator(new OvershootInterpolator());
+        recyclerView.setAdapter(slideAdapter);
     }
 
     public void initSwipeRefreshLayout() {

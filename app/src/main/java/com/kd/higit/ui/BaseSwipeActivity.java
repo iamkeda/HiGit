@@ -75,7 +75,7 @@ public abstract class BaseSwipeActivity extends SwipeBackActivity {
     abstract protected void setTitle(TextView view);
 
     protected int getNavigationIcon(){
-        return R.drawable.ic_back_arrow;
+        return R.drawable.ic_arrow_back_black_24dp;
     }
 
     private void setStatus() {
