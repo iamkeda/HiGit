@@ -1,8 +1,14 @@
 package com.kd.higit.api;
 
+import com.kd.higit.bean.Repository;
 import com.kd.higit.bean.User;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by KD on 2016/6/18.
@@ -74,9 +80,9 @@ public interface UsersService {
 //    @GET("/users/{username}/repos?type=owner")
 //    Call<List<Repository>> userReposList(@Path("username") String username, @Query("sort") String sort);
 //
-//    @GET("/users/{username}/repos?type=owner")
-//    Call<List<Repository>> userReposList(@Path("username") String username, @Query("sort") String sort,  @Query("page") int page);
-//
+    @GET("/users/{username}/repos?type=owner")
+    Call<List<Repository>> userReposList(@Path("username") String username, @Query("sort") String sort, @Query("page") int page);
+
 //    @GET("/user/repos?affiliation=organization_member")
 //    Call<List<Repository>> userReposListFromOrgs(@Query("sort") String sort);
 //

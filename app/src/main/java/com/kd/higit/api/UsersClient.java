@@ -18,6 +18,9 @@ public class UsersClient extends RetrofitNetwork {
         execute(usersService.me());
     }
 
+    public void userReposList(String username, String sort, int page){
+        execute(usersService.userReposList(username, sort, page));
+    }
 
     @Override
     public UsersClient setNetworkListener(NetworkListener networkListener) {
