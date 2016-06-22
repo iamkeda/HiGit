@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new ShowCaseFragment(), "ShowCase");
-        pagerAdapter.addFragment(new TrendingReposFragment(), "Trending");
         pagerAdapter.addFragment(new ShowRepositoriesFragment(), "MyRepos");
+        pagerAdapter.addFragment(new TrendingReposFragment(), "Trending");
         //pagerAdapter.addFragment(new HotReposFragment(), "HotRepos");
         //未完待续...
         mViewPager.setAdapter(pagerAdapter);
-        mViewPager.setCurrentItem(0);
+        mViewPager.setCurrentItem(1);
         ////关闭预加载，默认一次只加载一个Fragment
-        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setOffscreenPageLimit(2);
 
         mTabLayout.setupWithViewPager(mViewPager);
         //一下两行必须同时设置，标签评分tab
