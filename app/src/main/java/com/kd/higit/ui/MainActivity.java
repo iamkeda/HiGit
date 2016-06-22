@@ -27,6 +27,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.kd.gitnb.R;
 import com.kd.higit.bean.CurrentUser;
 import com.kd.higit.bean.User;
+import com.kd.higit.fragment.ShowCaseFragment;
+import com.kd.higit.fragment.ShowRepositoriesFragment;
 import com.kd.higit.fragment.TrendingReposFragment;
 
 import java.util.ArrayList;
@@ -77,8 +79,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         me = CurrentUser.get(MainActivity.this);
 
         pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
-        //pagerAdapter.addFragment(new ShowCaseFragment(), "ShowCase");
+        pagerAdapter.addFragment(new ShowCaseFragment(), "ShowCase");
         pagerAdapter.addFragment(new TrendingReposFragment(), "Trending");
+        pagerAdapter.addFragment(new ShowRepositoriesFragment(), "MyRepos");
         //pagerAdapter.addFragment(new HotReposFragment(), "HotRepos");
         //未完待续...
         mViewPager.setAdapter(pagerAdapter);
@@ -87,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewPager.setOffscreenPageLimit(1);
 
         mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        //一下两行必须同时设置，标签评分tab
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
