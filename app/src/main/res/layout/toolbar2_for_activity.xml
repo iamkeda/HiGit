@@ -17,8 +17,8 @@
         </View>
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="50dp"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,21 +34,9 @@
                     android:paddingLeft="5dp"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
-                <com.kyleduo.switchbutton.SwitchButton
-                    android:id="@+id/switch_button"
-                    android:visibility="gone"
-                    style="@style/SwitchButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:kswBackDrawable="@drawable/miui_back"
-                    app:kswBackMeasureRatio="2.2"
-                    app:kswThumbDrawable="@drawable/miui_thumb"
-                    app:kswThumbHeight="16dp"
-                    app:kswThumbWidth="16dp"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
-</android.support.design.widget.AppBarLayout>
 
+</android.support.design.widget.AppBarLayout>

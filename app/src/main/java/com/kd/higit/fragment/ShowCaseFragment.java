@@ -1,5 +1,6 @@
 package com.kd.higit.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.kd.higit.api.TrendingClient;
 import com.kd.higit.base.BaseFragment;
 import com.kd.higit.bean.ShowCase;
 import com.kd.higit.ui.MainActivity;
+import com.kd.higit.ui.ReposListActivity;
 
 import java.util.ArrayList;
 
@@ -42,7 +44,11 @@ public class ShowCaseFragment extends BaseFragment implements RetrofitNetwork.Ne
         adapter.setOnItemClickListener(new ShowCaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //
+                Intent intent = new Intent(getActivity(), ReposListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(SHOWCASE, adapter.getItem(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         mLinearLayoutManager = new LinearLayoutManager(getActivity());

@@ -60,7 +60,7 @@ public abstract class BaseSwipeActivity extends SwipeBackActivity {
             }
         });
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setTitle((TextView) mToolbar.findViewById(R.id.title_auth));
+        setTitle((TextView) mToolbar.findViewById(R.id.title));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(getNavigationIcon());
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

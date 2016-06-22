@@ -28,7 +28,10 @@
 
         <activity android:name="com.kd.higit.ui.MainActivity"
                   android:screenOrientation="portrait">
+        </activity>
 
+        <activity android:name="com.kd.higit.ui.ReposListActivity"
+                  android:screenOrientation="portrait">
         </activity>
 
     </application>
