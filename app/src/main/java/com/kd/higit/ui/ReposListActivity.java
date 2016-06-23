@@ -34,6 +34,7 @@ public class ReposListActivity extends BaseSwipeActivity implements RetrofitNetw
     private RecyclerView recyclerView;
     private ShowCase showCase;
     private SwipeRefreshLayout swipeRefreshLayout;
+    public static String REPOS = "repos";
 
     @Override
     protected void setTitle(TextView view) {
@@ -52,7 +53,11 @@ public class ReposListActivity extends BaseSwipeActivity implements RetrofitNetw
         adapter.setOnItemClickListener(new TrendingReposAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //
+                Intent intent = new Intent(ReposListActivity.this, ReposDetail.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(REPOS, adapter.getItem(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 

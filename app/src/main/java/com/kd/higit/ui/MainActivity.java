@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dm = getResources().getDisplayMetrics();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.layout);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("HiGit");
         setSupportActionBar(mToolbar);
         mViewPager = (ViewPager) findViewById(R.id.pager);
