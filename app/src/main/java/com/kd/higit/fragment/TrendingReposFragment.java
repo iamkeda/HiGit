@@ -17,6 +17,8 @@ import com.kd.higit.api.TrendingClient;
 import com.kd.higit.base.BaseFragment;
 import com.kd.higit.bean.Repository;
 import com.kd.higit.ui.MainActivity;
+import com.kd.higit.ui.ReposDetail;
+import com.kd.higit.ui.ReposListActivity;
 import com.kd.higit.utils.MessageUtils;
 
 import java.util.ArrayList;
@@ -44,11 +46,11 @@ public class TrendingReposFragment extends BaseFragment implements RetrofitNetwo
         adapter.setOnItemClickListener(new TrendingReposAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(getActivity(), ReposDetailActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelable(HotReposFragment.REPOS, adapter.getItem(position));
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), ReposDetail.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(ReposListActivity.REPOS, adapter.getItem(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
