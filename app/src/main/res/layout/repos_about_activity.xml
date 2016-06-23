@@ -15,7 +15,11 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             card_view:cardBackgroundColor="@color/miky_white"
+            card_view:cardCornerRadius="5dp"
             card_view:cardElevation="5dp"
             card_view:cardPreventCornerOverlap="true">
             <LinearLayout
@@ -26,13 +30,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/user_avatar"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
                         fresco:placeholderImage="@drawable/ic_git_gray_240"
                         fresco:roundedCornerRadius="10dp"
                         fresco:roundingBorderWidth="1dp">
@@ -66,6 +71,7 @@
                         android:id="@+id/text_language"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -85,6 +91,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
                             android:textStyle="bold"
                             android:textSize="20sp"/>
                         <TextView
@@ -92,6 +99,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="5dp"
                             android:textSize="15sp"
                             android:textStyle="italic"/>
                     </LinearLayout>
@@ -112,6 +121,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:textSize="15sp"
                             android:textStyle="italic"/>
                     </LinearLayout>
@@ -132,6 +142,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:textSize="15sp"
                             android:textStyle="italic"/>
                     </LinearLayout>
@@ -152,6 +163,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:textSize="15sp"
                             android:textStyle="italic"/>
                     </LinearLayout>
@@ -162,8 +174,12 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             card_view:cardBackgroundColor="@color/miky_white"
             card_view:cardElevation="5dp"
+            card_view:cardCornerRadius="5dp"
             card_view:cardPreventCornerOverlap="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -173,11 +189,13 @@
                     android:id="@+id/text_readme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:textSize="25sp"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/text_event"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"

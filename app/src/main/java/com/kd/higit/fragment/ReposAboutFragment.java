@@ -2,6 +2,7 @@ package com.kd.higit.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.kd.gitnb.R;
 import com.kd.higit.base.BaseFragment;
 import com.kd.higit.bean.Repository;
+import com.kd.higit.ui.ReadmeActivity;
+import com.kd.higit.utils.KLog;
 
 
 /**
@@ -20,7 +23,7 @@ import com.kd.higit.bean.Repository;
  */
 public class ReposAboutFragment extends BaseFragment {
     private String TAG = ReposAboutFragment.class.getSimpleName();
-
+    public static String README = "readme";
     public GetRepos mCallBack;
     public interface GetRepos {
         Repository getRepos();
@@ -76,9 +79,16 @@ public class ReposAboutFragment extends BaseFragment {
             text_codesize_num.setText(String.valueOf(((repos.getSize()/1024*100))/100)+"M");
             text_readme.setText("README");
             text_event.setText("EVENT");
+            KLog.d("repos.getUrl()" + repos.getUrl());
         }
 
-
-
+        text_readme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ReadmeActivity.class);
+                intent.putExtra(README, mCallBack.getRepos().getUrl());
+                startActivity(intent);
+            }
+        });
     }
 }
