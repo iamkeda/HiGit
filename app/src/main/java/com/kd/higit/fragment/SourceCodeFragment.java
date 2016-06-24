@@ -112,7 +112,7 @@ public class SourceCodeFragment extends BaseFragment implements MyBreadcrumb.Sel
             myBreadcrumb.removeCrumbAt(myBreadcrumb.size() - 1);
         }
         myBreadcrumb.setActive(crumb);
-        KLog.d("crumb.getPath() is " + crumb.getPath());
+        //KLog.d("crumb.getPath() is " + crumb.getPath());
         path = "/" + crumb.getPath();
         startRefresh();
     }
