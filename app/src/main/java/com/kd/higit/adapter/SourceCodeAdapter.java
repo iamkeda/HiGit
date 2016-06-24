@@ -11,6 +11,7 @@ import com.kd.gitnb.R;
 import com.kd.higit.bean.FileOrDirContent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by KD on 2016/6/24.
@@ -46,6 +47,7 @@ public class SourceCodeAdapter extends RecyclerView.Adapter<SourceCodeViewHolder
 
     public void update(ArrayList<FileOrDirContent> fileOrDirContents) {
         this.fileOrDirContents = fileOrDirContents;
+        Collections.sort(this.fileOrDirContents);
         notifyDataSetChanged();
     }
 

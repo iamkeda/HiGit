@@ -3,10 +3,11 @@ package com.kd.higit.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 /**
  * Created by KD on 2016/6/24.
  */
-public class FileOrDirContent implements Parcelable {
+public class FileOrDirContent implements Parcelable ,Comparable<FileOrDirContent> {
     public String type;
     public int size;
     public String name;
@@ -73,6 +74,20 @@ public class FileOrDirContent implements Parcelable {
             return new FileOrDirContent[size];
         }
     };
+
+    @Override
+    public int compareTo(FileOrDirContent another) {
+        if (this.isDir() && another.isFile()) {
+            return -1;
+        } else if (this.isFile() && another.isDir()) {
+            return 1;
+        } else if (this.isDir() && another.isDir()) {
+            return -1000 + this.name.compareTo(another.getName());
+        } else if (this.isFile() && another.isFile()) {
+            return 1000 + this.name.compareTo(another.getName());
+        }
+        return 0;
+    }
 
     public String getType() {
         return type;
