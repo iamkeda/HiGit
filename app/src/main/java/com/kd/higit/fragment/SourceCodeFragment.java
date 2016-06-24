@@ -19,16 +19,18 @@ import com.kd.higit.bean.FileOrDirContent;
 import com.kd.higit.bean.Repository;
 import com.kd.higit.ui.ReadFileActivity;
 import com.kd.higit.utils.KLog;
+import com.kd.higit.widget.MyBreadcrumb;
 
 import java.util.ArrayList;
 
 /**
  * Created by KD on 2016/6/24.
  */
-public class SourceCodeFragment extends BaseFragment {
+public class SourceCodeFragment extends BaseFragment implements MyBreadcrumb.SelectionCallback {
     private final static String TAG = SourceCodeFragment.class.getSimpleName();
     private SourceCodeAdapter adapter;
     private RecyclerView recyclerView;
+    private MyBreadcrumb myBreadcrumb;
     private Repository repos;
     private GetReposToSCF callBack;
     private String path = "";
@@ -58,10 +60,12 @@ public class SourceCodeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.list_data_fragment, container, false);
+        View view = inflater.inflate(R.layout.list_sourcecode_item, container, false);
         initSwipeRefreshLayout(view);
         repos = callBack.getReposToSCF();
         if (repos != null) {
+            //增加
+            setBreadcrumeb(view);
             setView(view);
         }
         return view;
@@ -77,6 +81,7 @@ public class SourceCodeFragment extends BaseFragment {
                 if (fileOrDirContent.isDir()) {
                     path = "/" + fileOrDirContent.getPath();
                     //KLog.d("the position is " + position);
+                    updateBreadcrumb(fileOrDirContent.getPath(), fileOrDirContent.getSha());
                     startRefresh();
                 }
                 if (fileOrDirContent.isFile()) {
@@ -89,6 +94,27 @@ public class SourceCodeFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
+    }
+
+    private void setBreadcrumeb(View view) {
+        myBreadcrumb = (MyBreadcrumb) view.findViewById(R.id.mybreadrumb);
+        myBreadcrumb.initRootCrumb();
+        myBreadcrumb.setCallback(this);
+    }
+
+    private void updateBreadcrumb(String path, String sha) {
+        myBreadcrumb.addCrumb(new MyBreadcrumb.Crumb(path, sha), true);
+    }
+
+    @Override
+    public void onCrumbSelection(MyBreadcrumb.Crumb crumb, String absolutePath, int count, int index) {
+        for (int i = index + 1; i < count; i ++) {
+            myBreadcrumb.removeCrumbAt(myBreadcrumb.size() - 1);
+        }
+        myBreadcrumb.setActive(crumb);
+        KLog.d("crumb.getPath() is " + crumb.getPath());
+        path = "/" + crumb.getPath();
+        startRefresh();
     }
 
     @Override
