@@ -81,8 +81,8 @@ public class SourceCodeFragment extends BaseFragment implements MyBreadcrumb.Sel
                 if (fileOrDirContent.isDir()) {
                     path = "/" + fileOrDirContent.getPath();
                     //KLog.d("the position is " + position);
-                    updateBreadcrumb(fileOrDirContent.getPath(), fileOrDirContent.getSha());
                     startRefresh();
+                    updateBreadcrumb(fileOrDirContent.getPath(), fileOrDirContent.getSha());
                 }
                 if (fileOrDirContent.isFile()) {
                     //KLog.d("the position is " + position);
@@ -112,8 +112,11 @@ public class SourceCodeFragment extends BaseFragment implements MyBreadcrumb.Sel
             myBreadcrumb.removeCrumbAt(myBreadcrumb.size() - 1);
         }
         myBreadcrumb.setActive(crumb);
-        //KLog.d("crumb.getPath() is " + crumb.getPath());
+        KLog.d("crumb.getPath() is " + crumb.getPath());
         path = "/" + crumb.getPath();
+        if ("/".equals(crumb.getPath())) {
+            path = "/";
+        }
         startRefresh();
     }
 
