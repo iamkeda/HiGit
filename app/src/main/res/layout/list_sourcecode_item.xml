@@ -14,7 +14,7 @@
                 android:id="@+id/mybreadrumb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary">
+                android:background="@color/account_line">
             </com.kd.higit.widget.MyBreadcrumb>
 
             <android.support.v7.widget.RecyclerView
