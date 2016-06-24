@@ -41,6 +41,7 @@ public abstract class RetrofitNetwork {
 
             @Override
             public void onFailure(Call call, Throwable t) {
+                KLog.d("onsponse failed");
                 myOnFailure(t);
             }
         });

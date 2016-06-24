@@ -1,6 +1,5 @@
 package com.kd.higit.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +24,7 @@ public class ReposAboutFragment extends BaseFragment {
     private String TAG = ReposAboutFragment.class.getSimpleName();
     public static String README = "readme";
     public GetRepos mCallBack;
+    private View view;
     public interface GetRepos {
         Repository getRepos();
     }
@@ -39,7 +39,7 @@ public class ReposAboutFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.repos_about_activity, container, false);
+        view = inflater.inflate(R.layout.repos_about_activity, container, false);
         initSwipeRefreshLayout(view);
         setAbout(view);
         return view;
@@ -79,7 +79,7 @@ public class ReposAboutFragment extends BaseFragment {
             text_codesize_num.setText(String.valueOf(((repos.getSize()/1024*100))/100)+"M");
             text_readme.setText("README");
             text_event.setText("EVENT");
-            KLog.d("repos.getUrl()" + repos.getUrl());
+
         }
 
         text_readme.setOnClickListener(new View.OnClickListener() {
@@ -90,5 +90,11 @@ public class ReposAboutFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void startRefresh() {
+        setAbout(view);
+        endRefresh();
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.kd.gitnb.R;
 import com.kd.higit.bean.Repository;
 import com.kd.higit.fragment.ReposAboutFragment;
+import com.kd.higit.fragment.SourceCodeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by KD on 2016/6/22.
  */
-public class ReposDetail extends BaseSwipeActivity implements ReposAboutFragment.GetRepos{
+public class ReposDetail extends BaseSwipeActivity implements ReposAboutFragment.GetRepos, SourceCodeFragment.GetReposToSCF{
     private static String TAG = ReposDetail.class.getSimpleName();
     private Repository repos;
     private MyTabPagerAdapter pagerAdapter;
@@ -41,6 +42,11 @@ public class ReposDetail extends BaseSwipeActivity implements ReposAboutFragment
     }
 
     @Override
+    public Repository getReposToSCF() {
+        return repos;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
@@ -50,11 +56,12 @@ public class ReposDetail extends BaseSwipeActivity implements ReposAboutFragment
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         pagerAdapter = new MyTabPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new ReposAboutFragment(), "About");
+        pagerAdapter.addFragment(new SourceCodeFragment(), "Code");
 
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(0);
         ////关闭预加载，默认一次只加载一个Fragment
-        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setOffscreenPageLimit(2);
         mTabLayout.setupWithViewPager(mViewPager);
         //一下两行必须同时设置，标签评分tab
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);

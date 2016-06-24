@@ -38,6 +38,13 @@
                   android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name="com.kd.higit.ui.ReadmeActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.kd.higit.ui.ReadFileActivity"
+                  android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
