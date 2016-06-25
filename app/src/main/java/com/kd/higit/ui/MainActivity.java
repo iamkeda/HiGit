@@ -12,12 +12,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -30,7 +33,9 @@ import com.kd.higit.bean.User;
 import com.kd.higit.fragment.ShowCaseFragment;
 import com.kd.higit.fragment.ShowRepositoriesFragment;
 import com.kd.higit.fragment.TrendingReposFragment;
+import com.kd.higit.utils.KLog;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DisplayMetrics dm;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+    private SearchView mSearchView;
     private User me;
+    private String search_text;
     private long exitTime = 0; ////记录第一次点击的时间
 
     public interface UpdateLanguageListener {
@@ -58,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        KLog.d("onCreate");
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
@@ -213,6 +221,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        KLog.d("onCreateOptionsMenu");
+        getMenuInflater().inflate(R.menu.searchview_menu, menu);
+        final MenuItem item = menu.findItem(R.id.search_view);
+        mSearchView = (SearchView) MenuItemCompat.getActionView(item);
+        mSearchView.setQueryHint("search repos...");
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                try {
+                    search_text = new String(query.trim().getBytes(), "ISO-8859-1");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(MainActivity.this, SearchReposActivity.class);
+                intent.putExtra("search_content", search_text);
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return true;
     }
 
     public void showSnackBar(View view, String msg) {
