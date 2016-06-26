@@ -22,6 +22,9 @@ public class UsersClient extends RetrofitNetwork {
         execute(usersService.userReposList(username, sort, page));
     }
 
+    public void userStarred(String username, String sort, String direction) {
+        execute(usersService.userStarred(username, sort, direction));
+    }
     @Override
     public UsersClient setNetworkListener(NetworkListener networkListener) {
         return setNetworkListener(networkListener, this);

@@ -30,4 +30,5 @@ public class ShowRepositoriesFragment extends TrendingReposFragment {
         UsersClient.getNewInstance().setNetworkListener(this)
                 .userReposList(me.getLogin(), "updated", page);
     }
+
 }

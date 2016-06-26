@@ -83,6 +83,8 @@ public interface UsersService {
     @GET("/users/{username}/repos?type=owner")
     Call<List<Repository>> userReposList(@Path("username") String username, @Query("sort") String sort, @Query("page") int page);
 
+    @GET("/users/{username}/starred")
+    Call<List<Repository>> userStarred(@Path("username") String username, @Query("sort") String sort, @Query("direction") String direction);
 //    @GET("/user/repos?affiliation=organization_member")
 //    Call<List<Repository>> userReposListFromOrgs(@Query("sort") String sort);
 //

@@ -32,6 +32,7 @@ import com.kd.higit.bean.CurrentUser;
 import com.kd.higit.bean.User;
 import com.kd.higit.fragment.ShowCaseFragment;
 import com.kd.higit.fragment.ShowRepositoriesFragment;
+import com.kd.higit.fragment.StarsFragment;
 import com.kd.higit.fragment.TrendingReposFragment;
 import com.kd.higit.utils.KLog;
 
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pagerAdapter.addFragment(new ShowCaseFragment(), "ShowCase");
         pagerAdapter.addFragment(new ShowRepositoriesFragment(), "MyRepos");
         pagerAdapter.addFragment(new TrendingReposFragment(), "Trending");
-        //pagerAdapter.addFragment(new HotReposFragment(), "HotRepos");
+        pagerAdapter.addFragment(new StarsFragment(), "Starred");
         //未完待续...
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(1);
