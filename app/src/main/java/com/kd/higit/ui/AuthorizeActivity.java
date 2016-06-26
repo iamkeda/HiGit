@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.WebSettings;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -55,7 +58,10 @@ public class AuthorizeActivity extends BaseSwipeActivity {
                 .append("&redirect_uri=").append(GitHub.REDIRECT_URI)
                 .append("&scope=").append(GitHub.SCOPE);
         String url = sp.toString();
+        //清楚cookie 避免每次sign out 不成功
+        removeAllCookie(web_content);
         web_content.getSettings().setJavaScriptEnabled(true);
+        web_content.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         web_content.loadUrl(url);
         web_content.setUrlLoadingListener(new ProgressWebView.UrlLoadingListener() {
             @Override
@@ -77,6 +83,15 @@ public class AuthorizeActivity extends BaseSwipeActivity {
         });
     }
 
+    private void removeAllCookie(ProgressWebView webView) {
+        CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(webView.getContext());
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();
+        cookieManager.removeAllCookie();
+        cookieSyncManager.sync();
+
+    }
     private void loadingInfo() {
         loading_bg.setVisibility(View.VISIBLE);
         Uri path = (new Uri.Builder()).scheme("res").path(String.valueOf(R.drawable.github_loading)).build();

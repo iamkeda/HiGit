@@ -1,5 +1,6 @@
 package com.kd.higit.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(1);
         ////关闭预加载，默认一次只加载一个Fragment
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(3);
         mTabLayout.setupWithViewPager(mViewPager);
         //一下两行必须同时设置，标签评分tab
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -203,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "正在开发...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_sign_out:
-                Toast.makeText(MainActivity.this, "正在开发...", Toast.LENGTH_SHORT).show();
+                showSignOutDialog();
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -255,5 +257,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void showSignOutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Caution");
+        builder.setMessage("Do you want to sign out ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                CurrentUser.delete(MainActivity.this);
+                me = null;
+                finish();
+                Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", null);
+        builder.setCancelable(true);
+        builder.show();
     }
 }
