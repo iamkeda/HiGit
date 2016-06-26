@@ -177,7 +177,7 @@ public class ReposAboutFragment extends BaseFragment {
                     snackbar.dismiss();
                     showStarStatusInFab();
                 }
-            }).starRepos(repos.getOwner().getLogin(), repos.getName());
+            }).unstarRepos(repos.getOwner().getLogin(), repos.getName());
         }
     }
 
