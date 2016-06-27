@@ -25,6 +25,7 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.kd.higit.utils.KLog;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by KD on 2016/6/17.
@@ -275,6 +277,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         builder.setNegativeButton("No", null);
         builder.setCancelable(true);
-        builder.show();
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setWindowAnimations(R.style.dialog_anim);
     }
 }
