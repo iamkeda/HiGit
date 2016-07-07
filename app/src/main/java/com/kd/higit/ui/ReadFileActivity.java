@@ -11,7 +11,9 @@ import com.kd.higit.api.MyOkHttpClient;
 import com.kd.higit.api.RetrofitNetwork;
 import com.kd.higit.bean.FileOrDirContent;
 import com.kd.higit.utils.Utils;
-import com.kd.higit.widget.ProgressWebView;
+
+import thereisnospon.codeview.CodeView;
+import thereisnospon.codeview.CodeViewTheme;
 
 /**
  * Created by KD on 2016/6/24.
@@ -19,7 +21,7 @@ import com.kd.higit.widget.ProgressWebView;
 public class ReadFileActivity extends BaseSwipeActivity {
     private static final String TAG = ReadFileActivity.class.getSimpleName();
     private FileOrDirContent content;
-    private TextView file_content;
+    private CodeView file_content;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -40,7 +42,8 @@ public class ReadFileActivity extends BaseSwipeActivity {
         content = intent.getParcelableExtra("filecontent");
         setContentView(R.layout.readfile_activity);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        file_content = (TextView) findViewById(R.id.file_content);
+        file_content = (CodeView) findViewById(R.id.codeview);
+        file_content.setTheme(CodeViewTheme.DARKULA).fillColor();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ReadFileActivity extends BaseSwipeActivity {
     }
 
     private void updateFileContent() {
-        file_content.setText(new String(Base64.decode(content.getContent(), Base64.DEFAULT)));
+        file_content.showCode(new String(Base64.decode(content.getContent(), Base64.DEFAULT)));
     }
 
     private void requestFileContent(String url) {

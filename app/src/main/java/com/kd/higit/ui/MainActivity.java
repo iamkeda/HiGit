@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new ShowCaseFragment(), "ShowCase");
-        pagerAdapter.addFragment(new ShowRepositoriesFragment(), "MyRepos");
         pagerAdapter.addFragment(new TrendingReposFragment(), "Trending");
+        pagerAdapter.addFragment(new ShowRepositoriesFragment(), "MyRepos");
         pagerAdapter.addFragment(new StarsFragment(), "Starred");
         //未完待续...
         mViewPager.setAdapter(pagerAdapter);
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "正在开发...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_about:
-                Toast.makeText(MainActivity.this, "正在开发...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
             case R.id.nav_sign_out:
                 showSignOutDialog();
@@ -263,9 +263,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void showSignOutDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Caution");
+        builder.setTitle("Warning");
         builder.setMessage("Do you want to sign out ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CurrentUser.delete(MainActivity.this);
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton("No", null);
+        builder.setNegativeButton("Cancel", null);
         builder.setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();

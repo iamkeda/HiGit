@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="HiGit">
+        <Preference
+            android:key="introduction"
+            android:title="introduction"/>
+        <Preference
+            android:key="current_version"
+            android:title="version"/>
+        <Preference
+            android:key="share"
+            android:title="share"/>
+        <Preference
+            android:key="encourage"
+            android:title="reward"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About author">
+        <Preference
+            android:key="blog"
+            android:title="bolg"/>
+        <Preference
+            android:key="email"
+            android:title="email"
+            android:summary="kodak123.cn@163.com"/>
+    </PreferenceCategory>
+</PreferenceScreen>
